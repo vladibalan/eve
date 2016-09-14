@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Invtypereactions" table="invTypeReactions">
+    <indexes>
+      <index name="reactionTypeID" columns="reactionTypeID"/>
+      <index name="typeID" columns="typeID"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="input" type="boolean" column="input" nullable="false"/>
+    <field name="quantity" type="integer" column="quantity" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="typeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="typeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="reactiontypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="reactionTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

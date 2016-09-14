@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Chrbloodlines" table="chrBloodlines">
+    <indexes>
+      <index name="raceID" columns="raceID"/>
+      <index name="shipTypeID" columns="shipTypeID"/>
+      <index name="corporationID" columns="corporationID"/>
+      <index name="iconID" columns="iconID"/>
+    </indexes>
+    <id name="bloodlineid" type="integer" column="bloodlineID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="bloodlinename" type="string" column="bloodlineName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="maledescription" type="string" column="maleDescription" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="femaledescription" type="string" column="femaleDescription" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="perception" type="integer" column="perception" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="willpower" type="integer" column="willpower" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="charisma" type="integer" column="charisma" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="memory" type="integer" column="memory" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="intelligence" type="integer" column="intelligence" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="shortdescription" type="string" column="shortDescription" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shortmaledescription" type="string" column="shortMaleDescription" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shortfemaledescription" type="string" column="shortFemaleDescription" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="iconid" target-entity="Eveicons" fetch="LAZY">
+      <join-columns>
+        <join-column name="iconID" referenced-column-name="iconID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="shiptypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="shipTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="corporationid" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="corporationID" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="raceid" target-entity="Chrraces" fetch="LAZY">
+      <join-columns>
+        <join-column name="raceID" referenced-column-name="raceID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

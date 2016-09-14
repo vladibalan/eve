@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Industryactivityproducts" table="industryActivityProducts">
+    <indexes>
+      <index name="ix_industryActivityProducts_typeID" columns="typeID"/>
+      <index name="ix_industryActivityProducts_productTypeID" columns="productTypeID"/>
+      <index name="activityID" columns="activityID"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="quantity" type="integer" column="quantity" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="producttypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="productTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="typeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="typeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="activityid" target-entity="Ramactivities" fetch="LAZY">
+      <join-columns>
+        <join-column name="activityID" referenced-column-name="activityID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

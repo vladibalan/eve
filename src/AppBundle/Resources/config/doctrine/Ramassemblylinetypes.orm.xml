@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Ramassemblylinetypes" table="ramAssemblyLineTypes">
+    <indexes>
+      <index name="activityID" columns="activityID"/>
+    </indexes>
+    <id name="assemblylinetypeid" type="integer" column="assemblyLineTypeID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="assemblylinetypename" type="string" column="assemblyLineTypeName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="basetimemultiplier" type="float" column="baseTimeMultiplier" precision="10" scale="0" nullable="true"/>
+    <field name="basematerialmultiplier" type="float" column="baseMaterialMultiplier" precision="10" scale="0" nullable="true"/>
+    <field name="basecostmultiplier" type="float" column="baseCostMultiplier" precision="10" scale="0" nullable="true"/>
+    <field name="volume" type="float" column="volume" precision="10" scale="0" nullable="true"/>
+    <field name="mincostperhour" type="float" column="minCostPerHour" precision="10" scale="0" nullable="true"/>
+    <many-to-one field="activityid" target-entity="Ramactivities" fetch="LAZY">
+      <join-columns>
+        <join-column name="activityID" referenced-column-name="activityID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Mapcelestialstatistics" table="mapCelestialStatistics">
+    <id name="celestialid" type="integer" column="celestialID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="temperature" type="float" column="temperature" precision="10" scale="0" nullable="true"/>
+    <field name="spectralclass" type="string" column="spectralClass" length="10" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="luminosity" type="float" column="luminosity" precision="10" scale="0" nullable="true"/>
+    <field name="age" type="float" column="age" precision="10" scale="0" nullable="true"/>
+    <field name="life" type="float" column="life" precision="10" scale="0" nullable="true"/>
+    <field name="orbitradius" type="float" column="orbitRadius" precision="10" scale="0" nullable="true"/>
+    <field name="eccentricity" type="float" column="eccentricity" precision="10" scale="0" nullable="true"/>
+    <field name="massdust" type="float" column="massDust" precision="10" scale="0" nullable="true"/>
+    <field name="massgas" type="float" column="massGas" precision="10" scale="0" nullable="true"/>
+    <field name="fragmented" type="boolean" column="fragmented" nullable="true"/>
+    <field name="density" type="float" column="density" precision="10" scale="0" nullable="true"/>
+    <field name="surfacegravity" type="float" column="surfaceGravity" precision="10" scale="0" nullable="true"/>
+    <field name="escapevelocity" type="float" column="escapeVelocity" precision="10" scale="0" nullable="true"/>
+    <field name="orbitperiod" type="float" column="orbitPeriod" precision="10" scale="0" nullable="true"/>
+    <field name="rotationrate" type="float" column="rotationRate" precision="10" scale="0" nullable="true"/>
+    <field name="locked" type="boolean" column="locked" nullable="true"/>
+    <field name="pressure" type="bigint" column="pressure" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="radius" type="bigint" column="radius" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="mass" type="integer" column="mass" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

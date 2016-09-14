@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Stastationtypes" table="staStationTypes">
+    <indexes>
+      <index name="operationID" columns="operationID"/>
+    </indexes>
+    <id name="stationtypeid" type="integer" column="stationTypeID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="dockentryx" type="float" column="dockEntryX" precision="10" scale="0" nullable="true"/>
+    <field name="dockentryy" type="float" column="dockEntryY" precision="10" scale="0" nullable="true"/>
+    <field name="dockentryz" type="float" column="dockEntryZ" precision="10" scale="0" nullable="true"/>
+    <field name="dockorientationx" type="float" column="dockOrientationX" precision="10" scale="0" nullable="true"/>
+    <field name="dockorientationy" type="float" column="dockOrientationY" precision="10" scale="0" nullable="true"/>
+    <field name="dockorientationz" type="float" column="dockOrientationZ" precision="10" scale="0" nullable="true"/>
+    <field name="officeslots" type="integer" column="officeSlots" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="reprocessingefficiency" type="float" column="reprocessingEfficiency" precision="10" scale="0" nullable="true"/>
+    <field name="conquerable" type="boolean" column="conquerable" nullable="true"/>
+    <many-to-one field="operationid" target-entity="Staoperations" fetch="LAZY">
+      <join-columns>
+        <join-column name="operationID" referenced-column-name="operationID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

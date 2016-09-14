@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Maplandmarks" table="mapLandmarks">
+    <id name="landmarkid" type="integer" column="landmarkID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="landmarkname" type="string" column="landmarkName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="text" column="description" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="locationid" type="integer" column="locationID" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="x" type="float" column="x" precision="10" scale="0" nullable="true"/>
+    <field name="y" type="float" column="y" precision="10" scale="0" nullable="true"/>
+    <field name="z" type="float" column="z" precision="10" scale="0" nullable="true"/>
+    <field name="iconid" type="integer" column="iconID" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

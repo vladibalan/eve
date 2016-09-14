@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Invitems" table="invItems">
+    <indexes>
+      <index name="ix_invItems_locationID" columns="locationID"/>
+      <index name="items_IX_OwnerLocation" columns="ownerID,locationID"/>
+      <index name="typeID" columns="typeID"/>
+      <index name="flagID" columns="flagID"/>
+      <index name="IDX_4A898CC9DB30DDED" columns="ownerID"/>
+    </indexes>
+    <id name="itemid" association-key="true"/>
+    <field name="quantity" type="integer" column="quantity" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <one-to-one field="itemid" target-entity="Invnames" fetch="LAZY">
+      <join-columns>
+        <join-column name="itemID" referenced-column-name="itemID"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="ownerid" target-entity="Invnames" fetch="LAZY">
+      <join-columns>
+        <join-column name="ownerID" referenced-column-name="itemID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="locationid" target-entity="Invnames" fetch="LAZY">
+      <join-columns>
+        <join-column name="locationID" referenced-column-name="itemID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="typeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="typeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="flagid" target-entity="Invflags" fetch="LAZY">
+      <join-columns>
+        <join-column name="flagID" referenced-column-name="flagID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

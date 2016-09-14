@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Trntranslationlanguages" table="trnTranslationLanguages">
+    <indexes>
+      <index name="languageID" columns="languageID"/>
+    </indexes>
+    <id name="numericlanguageid" type="integer" column="numericLanguageID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="languageid" type="string" column="languageID" length="50" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="languagename" type="string" column="languageName" length="200" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+  </entity>
+</doctrine-mapping>

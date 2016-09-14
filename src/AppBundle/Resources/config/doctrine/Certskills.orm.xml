@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Certskills" table="certSkills">
+    <indexes>
+      <index name="ix_certSkills_skillID" columns="skillID"/>
+      <index name="certID" columns="certID"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="certlevelint" type="integer" column="certLevelInt" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="skilllevel" type="integer" column="skillLevel" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="certleveltext" type="string" column="certLevelText" length="8" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="certid" target-entity="Certcerts" fetch="LAZY">
+      <join-columns>
+        <join-column name="certID" referenced-column-name="certID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="skillid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="skillID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

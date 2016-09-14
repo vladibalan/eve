@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Agtagents" table="agtAgents">
+    <indexes>
+      <index name="ix_agtAgents_corporationID" columns="corporationID"/>
+      <index name="ix_agtAgents_locationID" columns="locationID"/>
+      <index name="divisionID" columns="divisionID"/>
+      <index name="agentTypeID" columns="agentTypeID"/>
+    </indexes>
+    <id name="agentid" type="integer" column="agentID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="locationid" type="integer" column="locationID" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="level" type="integer" column="level" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="quality" type="integer" column="quality" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="islocator" type="boolean" column="isLocator" nullable="true"/>
+    <many-to-one field="corporationid" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="corporationID" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="agenttypeid" target-entity="Agtagenttypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="agentTypeID" referenced-column-name="agentTypeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="divisionid" target-entity="Crpnpcdivisions" fetch="LAZY">
+      <join-columns>
+        <join-column name="divisionID" referenced-column-name="divisionID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

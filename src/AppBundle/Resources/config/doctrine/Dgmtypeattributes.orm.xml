@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Dgmtypeattributes" table="dgmTypeAttributes">
+    <indexes>
+      <index name="ix_dgmTypeAttributes_attributeID" columns="attributeID"/>
+      <index name="typeID" columns="typeID"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="valueint" type="integer" column="valueInt" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="valuefloat" type="float" column="valueFloat" precision="10" scale="0" nullable="true"/>
+    <many-to-one field="typeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="typeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="attributeid" target-entity="Dgmattributetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="attributeID" referenced-column-name="attributeID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

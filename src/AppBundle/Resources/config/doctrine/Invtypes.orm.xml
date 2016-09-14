@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Invtypes" table="invTypes">
+    <indexes>
+      <index name="ix_invTypes_groupID" columns="groupID"/>
+      <index name="marketGroupID" columns="marketGroupID"/>
+      <index name="soundID" columns="soundID"/>
+      <index name="graphicID" columns="graphicID"/>
+      <index name="iconID" columns="iconID"/>
+      <index name="raceID" columns="raceID"/>
+    </indexes>
+    <id name="typeid" type="integer" column="typeID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="typename" type="string" column="typeName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="text" column="description" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="mass" type="float" column="mass" precision="10" scale="0" nullable="true"/>
+    <field name="volume" type="float" column="volume" precision="10" scale="0" nullable="true"/>
+    <field name="capacity" type="float" column="capacity" precision="10" scale="0" nullable="true"/>
+    <field name="portionsize" type="integer" column="portionSize" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="baseprice" type="decimal" column="basePrice" precision="19" scale="4" nullable="true"/>
+    <field name="published" type="boolean" column="published" nullable="true"/>
+    <field name="soundid" type="integer" column="soundID" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="raceid" target-entity="Chrraces" fetch="LAZY">
+      <join-columns>
+        <join-column name="raceID" referenced-column-name="raceID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="marketgroupid" target-entity="Invmarketgroups" fetch="LAZY">
+      <join-columns>
+        <join-column name="marketGroupID" referenced-column-name="marketGroupID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="graphicid" target-entity="Evegraphics" fetch="LAZY">
+      <join-columns>
+        <join-column name="graphicID" referenced-column-name="graphicID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="iconid" target-entity="Eveicons" fetch="LAZY">
+      <join-columns>
+        <join-column name="iconID" referenced-column-name="iconID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="groupid" target-entity="Invgroups" fetch="LAZY">
+      <join-columns>
+        <join-column name="groupID" referenced-column-name="groupID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

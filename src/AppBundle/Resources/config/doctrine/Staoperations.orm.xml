@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Staoperations" table="staOperations">
+    <indexes>
+      <index name="activityID" columns="activityID"/>
+      <index name="caldariStationTypeID" columns="caldariStationTypeID"/>
+      <index name="minmatarStationTypeID" columns="minmatarStationTypeID"/>
+      <index name="amarrStationTypeID" columns="amarrStationTypeID"/>
+      <index name="gallenteStationTypeID" columns="gallenteStationTypeID"/>
+      <index name="joveStationTypeID" columns="joveStationTypeID"/>
+    </indexes>
+    <id name="operationid" type="integer" column="operationID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="operationname" type="string" column="operationName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="fringe" type="integer" column="fringe" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="corridor" type="integer" column="corridor" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="hub" type="integer" column="hub" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="border" type="integer" column="border" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="ratio" type="integer" column="ratio" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="jovestationtypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="joveStationTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="activityid" target-entity="Crpactivities" fetch="LAZY">
+      <join-columns>
+        <join-column name="activityID" referenced-column-name="activityID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="gallentestationtypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="gallenteStationTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="amarrstationtypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="amarrStationTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="minmatarstationtypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="minmatarStationTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="caldaristationtypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="caldariStationTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

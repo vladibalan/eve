@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Mapdenormalize" table="mapDenormalize">
+    <indexes>
+      <index name="ix_mapDenormalize_regionID" columns="regionID"/>
+      <index name="mapDenormalize_IX_groupConstellation" columns="groupID,constellationID"/>
+      <index name="ix_mapDenormalize_solarSystemID" columns="solarSystemID"/>
+      <index name="ix_mapDenormalize_orbitID" columns="orbitID"/>
+      <index name="mapDenormalize_IX_groupSystem" columns="groupID,solarSystemID"/>
+      <index name="ix_mapDenormalize_constellationID" columns="constellationID"/>
+      <index name="mapDenormalize_IX_groupRegion" columns="groupID,regionID"/>
+      <index name="ix_mapDenormalize_typeID" columns="typeID"/>
+      <index name="IDX_64B77626D6EFA878" columns="groupID"/>
+    </indexes>
+    <id name="itemid" association-key="true"/>
+    <field name="x" type="float" column="x" precision="10" scale="0" nullable="true"/>
+    <field name="y" type="float" column="y" precision="10" scale="0" nullable="true"/>
+    <field name="z" type="float" column="z" precision="10" scale="0" nullable="true"/>
+    <field name="radius" type="float" column="radius" precision="10" scale="0" nullable="true"/>
+    <field name="itemname" type="string" column="itemName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="security" type="float" column="security" precision="10" scale="0" nullable="true"/>
+    <field name="celestialindex" type="integer" column="celestialIndex" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="orbitindex" type="integer" column="orbitIndex" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <one-to-one field="itemid" target-entity="Invnames" fetch="LAZY">
+      <join-columns>
+        <join-column name="itemID" referenced-column-name="itemID"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="regionid" target-entity="Mapregions" fetch="LAZY">
+      <join-columns>
+        <join-column name="regionID" referenced-column-name="regionID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="orbitid" target-entity="Mapcelestialstatistics" fetch="LAZY">
+      <join-columns>
+        <join-column name="orbitID" referenced-column-name="celestialID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="constellationid" target-entity="Mapconstellations" fetch="LAZY">
+      <join-columns>
+        <join-column name="constellationID" referenced-column-name="constellationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="solarsystemid" target-entity="Mapsolarsystems" fetch="LAZY">
+      <join-columns>
+        <join-column name="solarSystemID" referenced-column-name="solarSystemID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="typeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="typeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="groupid" target-entity="Invgroups" fetch="LAZY">
+      <join-columns>
+        <join-column name="groupID" referenced-column-name="groupID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

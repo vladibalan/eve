@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Mapconstellationjumps" table="mapConstellationJumps">
+    <indexes>
+      <index name="fromConstellationID" columns="fromConstellationID"/>
+      <index name="fromRegionID" columns="fromRegionID"/>
+      <index name="toRegionID" columns="toRegionID"/>
+      <index name="toConstellationID" columns="toConstellationID"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="toconstellationid" target-entity="Mapconstellations" fetch="LAZY">
+      <join-columns>
+        <join-column name="toConstellationID" referenced-column-name="constellationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="fromconstellationid" target-entity="Mapconstellations" fetch="LAZY">
+      <join-columns>
+        <join-column name="fromConstellationID" referenced-column-name="constellationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="toregionid" target-entity="Mapregions" fetch="LAZY">
+      <join-columns>
+        <join-column name="toRegionID" referenced-column-name="regionID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="fromregionid" target-entity="Mapregions" fetch="LAZY">
+      <join-columns>
+        <join-column name="fromRegionID" referenced-column-name="regionID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

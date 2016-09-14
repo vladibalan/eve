@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Ramassemblylinestations" table="ramAssemblyLineStations">
+    <indexes>
+      <index name="ix_ramAssemblyLineStations_ownerID" columns="ownerID"/>
+      <index name="ix_ramAssemblyLineStations_solarSystemID" columns="solarSystemID"/>
+      <index name="ix_ramAssemblyLineStations_regionID" columns="regionID"/>
+      <index name="stationID" columns="stationID"/>
+      <index name="assemblyLineTypeID" columns="assemblyLineTypeID"/>
+      <index name="stationTypeID" columns="stationTypeID"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="quantity" type="integer" column="quantity" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="regionid" target-entity="Mapregions" fetch="LAZY">
+      <join-columns>
+        <join-column name="regionID" referenced-column-name="regionID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="ownerid" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="ownerID" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="solarsystemid" target-entity="Mapsolarsystems" fetch="LAZY">
+      <join-columns>
+        <join-column name="solarSystemID" referenced-column-name="solarSystemID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="stationtypeid" target-entity="Stastationtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="stationTypeID" referenced-column-name="stationTypeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="assemblylinetypeid" target-entity="Ramassemblylinetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="assemblyLineTypeID" referenced-column-name="assemblyLineTypeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="stationid" target-entity="Stastations" fetch="LAZY">
+      <join-columns>
+        <join-column name="stationID" referenced-column-name="stationID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

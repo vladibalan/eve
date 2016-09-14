@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Dgmattributetypes" table="dgmAttributeTypes">
+    <indexes>
+      <index name="iconID" columns="iconID"/>
+      <index name="unitID" columns="unitID"/>
+      <index name="categoryID" columns="categoryID"/>
+    </indexes>
+    <id name="attributeid" type="integer" column="attributeID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="attributename" type="string" column="attributeName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="defaultvalue" type="float" column="defaultValue" precision="10" scale="0" nullable="true"/>
+    <field name="published" type="boolean" column="published" nullable="true"/>
+    <field name="displayname" type="string" column="displayName" length="150" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="stackable" type="boolean" column="stackable" nullable="true"/>
+    <field name="highisgood" type="boolean" column="highIsGood" nullable="true"/>
+    <many-to-one field="categoryid" target-entity="Dgmattributecategories" fetch="LAZY">
+      <join-columns>
+        <join-column name="categoryID" referenced-column-name="categoryID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="unitid" target-entity="Eveunits" fetch="LAZY">
+      <join-columns>
+        <join-column name="unitID" referenced-column-name="unitID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="iconid" target-entity="Eveicons" fetch="LAZY">
+      <join-columns>
+        <join-column name="iconID" referenced-column-name="iconID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

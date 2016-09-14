@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Invtraits" table="invTraits">
+    <indexes>
+      <index name="typeID" columns="typeID"/>
+      <index name="skillID" columns="skillID"/>
+      <index name="unitID" columns="unitID"/>
+    </indexes>
+    <id name="traitid" type="integer" column="traitID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="bonus" type="float" column="bonus" precision="10" scale="0" nullable="true"/>
+    <field name="bonustext" type="text" column="bonusText" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="unitid" target-entity="Eveunits" fetch="LAZY">
+      <join-columns>
+        <join-column name="unitID" referenced-column-name="unitID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="skillid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="skillID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="typeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="typeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

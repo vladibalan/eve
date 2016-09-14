@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Chrattributes" table="chrAttributes">
+    <indexes>
+      <index name="iconID" columns="iconID"/>
+    </indexes>
+    <id name="attributeid" type="integer" column="attributeID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="attributename" type="string" column="attributeName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="shortdescription" type="string" column="shortDescription" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="notes" type="string" column="notes" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="iconid" target-entity="Eveicons" fetch="LAZY">
+      <join-columns>
+        <join-column name="iconID" referenced-column-name="iconID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

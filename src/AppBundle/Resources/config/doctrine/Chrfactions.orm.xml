@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Chrfactions" table="chrFactions">
+    <indexes>
+      <index name="raceID" columns="raceID"/>
+      <index name="solarSystemID" columns="solarSystemID"/>
+      <index name="corporationID" columns="corporationID"/>
+      <index name="militiaCorporationID" columns="militiaCorporationID"/>
+      <index name="iconID" columns="iconID"/>
+    </indexes>
+    <id name="factionid" type="integer" column="factionID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="factionname" type="string" column="factionName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="sizefactor" type="float" column="sizeFactor" precision="10" scale="0" nullable="true"/>
+    <field name="stationcount" type="integer" column="stationCount" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="stationsystemcount" type="integer" column="stationSystemCount" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="iconid" target-entity="Eveicons" fetch="LAZY">
+      <join-columns>
+        <join-column name="iconID" referenced-column-name="iconID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="militiacorporationid" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="militiaCorporationID" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="corporationid" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="corporationID" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="solarsystemid" target-entity="Mapsolarsystems" fetch="LAZY">
+      <join-columns>
+        <join-column name="solarSystemID" referenced-column-name="solarSystemID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="raceid" target-entity="Chrraces" fetch="LAZY">
+      <join-columns>
+        <join-column name="raceID" referenced-column-name="raceID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

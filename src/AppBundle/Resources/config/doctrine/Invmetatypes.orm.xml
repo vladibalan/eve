@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Invmetatypes" table="invMetaTypes">
+    <indexes>
+      <index name="parentTypeID" columns="parentTypeID"/>
+      <index name="metaGroupID" columns="metaGroupID"/>
+    </indexes>
+    <id name="typeid" association-key="true"/>
+    <one-to-one field="typeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="typeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="metagroupid" target-entity="Invmetagroups" fetch="LAZY">
+      <join-columns>
+        <join-column name="metaGroupID" referenced-column-name="metaGroupID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="parenttypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="parentTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

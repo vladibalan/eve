@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Crpnpccorporations" table="crpNPCCorporations">
+    <indexes>
+      <index name="solarSystemID" columns="solarSystemID"/>
+      <index name="investorID1" columns="investorID1"/>
+      <index name="investorID2" columns="investorID2"/>
+      <index name="investorID3" columns="investorID3"/>
+      <index name="investorID4" columns="investorID4"/>
+      <index name="friendID" columns="friendID"/>
+      <index name="enemyID" columns="enemyID"/>
+      <index name="factionID" columns="factionID"/>
+      <index name="iconID" columns="iconID"/>
+    </indexes>
+    <id name="corporationid" type="integer" column="corporationID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="size" type="string" column="size" length="1" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="extent" type="string" column="extent" length="1" nullable="true">
+      <options>
+        <option name="fixed">1</option>
+      </options>
+    </field>
+    <field name="investorshares1" type="integer" column="investorShares1" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="investorshares2" type="integer" column="investorShares2" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="investorshares3" type="integer" column="investorShares3" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="investorshares4" type="integer" column="investorShares4" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="publicshares" type="integer" column="publicShares" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="initialprice" type="integer" column="initialPrice" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="minsecurity" type="float" column="minSecurity" precision="10" scale="0" nullable="true"/>
+    <field name="scattered" type="boolean" column="scattered" nullable="true"/>
+    <field name="fringe" type="integer" column="fringe" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="corridor" type="integer" column="corridor" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="hub" type="integer" column="hub" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="border" type="integer" column="border" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="sizefactor" type="float" column="sizeFactor" precision="10" scale="0" nullable="true"/>
+    <field name="stationcount" type="integer" column="stationCount" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="stationsystemcount" type="integer" column="stationSystemCount" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="4000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="investorid2" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="investorID2" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="investorid3" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="investorID3" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="investorid4" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="investorID4" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="investorid1" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="investorID1" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="enemyid" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="enemyID" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="factionid" target-entity="Chrfactions" fetch="LAZY">
+      <join-columns>
+        <join-column name="factionID" referenced-column-name="factionID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="iconid" target-entity="Eveicons" fetch="LAZY">
+      <join-columns>
+        <join-column name="iconID" referenced-column-name="iconID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="friendid" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="friendID" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="solarsystemid" target-entity="Mapsolarsystems" fetch="LAZY">
+      <join-columns>
+        <join-column name="solarSystemID" referenced-column-name="solarSystemID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

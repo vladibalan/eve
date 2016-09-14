@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Dgmeffects" table="dgmEffects">
+    <indexes>
+      <index name="iconID" columns="iconID"/>
+      <index name="durationAttributeID" columns="durationAttributeID"/>
+      <index name="trackingSpeedAttributeID" columns="trackingSpeedAttributeID"/>
+      <index name="dischargeAttributeID" columns="dischargeAttributeID"/>
+      <index name="rangeAttributeID" columns="rangeAttributeID"/>
+      <index name="falloffAttributeID" columns="falloffAttributeID"/>
+      <index name="npcUsageChanceAttributeID" columns="npcUsageChanceAttributeID"/>
+      <index name="npcActivationChanceAttributeID" columns="npcActivationChanceAttributeID"/>
+      <index name="fittingUsageChanceAttributeID" columns="fittingUsageChanceAttributeID"/>
+    </indexes>
+    <id name="effectid" type="integer" column="effectID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="effectname" type="string" column="effectName" length="400" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="effectcategory" type="integer" column="effectCategory" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="preexpression" type="integer" column="preExpression" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="postexpression" type="integer" column="postExpression" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="guid" type="string" column="guid" length="60" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="isoffensive" type="boolean" column="isOffensive" nullable="true"/>
+    <field name="isassistance" type="boolean" column="isAssistance" nullable="true"/>
+    <field name="disallowautorepeat" type="boolean" column="disallowAutoRepeat" nullable="true"/>
+    <field name="published" type="boolean" column="published" nullable="true"/>
+    <field name="displayname" type="string" column="displayName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="iswarpsafe" type="boolean" column="isWarpSafe" nullable="true"/>
+    <field name="rangechance" type="boolean" column="rangeChance" nullable="true"/>
+    <field name="electronicchance" type="boolean" column="electronicChance" nullable="true"/>
+    <field name="propulsionchance" type="boolean" column="propulsionChance" nullable="true"/>
+    <field name="distribution" type="integer" column="distribution" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="sfxname" type="string" column="sfxName" length="20" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="modifierinfo" type="text" column="modifierInfo" length="65535" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="npcusagechanceattributeid" target-entity="Dgmattributetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="npcUsageChanceAttributeID" referenced-column-name="attributeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="npcactivationchanceattributeid" target-entity="Dgmattributetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="npcActivationChanceAttributeID" referenced-column-name="attributeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="fittingusagechanceattributeid" target-entity="Dgmattributetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="fittingUsageChanceAttributeID" referenced-column-name="attributeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="falloffattributeid" target-entity="Dgmattributetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="falloffAttributeID" referenced-column-name="attributeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="rangeattributeid" target-entity="Dgmattributetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="rangeAttributeID" referenced-column-name="attributeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="durationattributeid" target-entity="Dgmattributetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="durationAttributeID" referenced-column-name="attributeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="trackingspeedattributeid" target-entity="Dgmattributetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="trackingSpeedAttributeID" referenced-column-name="attributeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="dischargeattributeid" target-entity="Dgmattributetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="dischargeAttributeID" referenced-column-name="attributeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="iconid" target-entity="Eveicons" fetch="LAZY">
+      <join-columns>
+        <join-column name="iconID" referenced-column-name="iconID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

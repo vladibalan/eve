@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Crpnpccorporationresearchfields" table="crpNPCCorporationResearchFields">
+    <indexes>
+      <index name="skillID" columns="skillID"/>
+      <index name="corporationID" columns="corporationID"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="corporationid" target-entity="Crpnpccorporations" fetch="LAZY">
+      <join-columns>
+        <join-column name="corporationID" referenced-column-name="corporationID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="skillid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="skillID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

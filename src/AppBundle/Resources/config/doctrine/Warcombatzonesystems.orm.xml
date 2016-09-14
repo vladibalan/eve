@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Warcombatzonesystems" table="warCombatZoneSystems">
+    <indexes>
+      <index name="combatZoneID" columns="combatZoneID"/>
+    </indexes>
+    <id name="solarsystemid" association-key="true"/>
+    <one-to-one field="solarsystemid" target-entity="Mapsolarsystems" fetch="LAZY">
+      <join-columns>
+        <join-column name="solarSystemID" referenced-column-name="solarSystemID"/>
+      </join-columns>
+    </one-to-one>
+    <many-to-one field="combatzoneid" target-entity="Warcombatzones" fetch="LAZY">
+      <join-columns>
+        <join-column name="combatZoneID" referenced-column-name="combatZoneID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

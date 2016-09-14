@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Invgroups" table="invGroups">
+    <indexes>
+      <index name="ix_invGroups_categoryID" columns="categoryID"/>
+      <index name="iconID" columns="iconID"/>
+    </indexes>
+    <id name="groupid" type="integer" column="groupID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="groupname" type="string" column="groupName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="usebaseprice" type="boolean" column="useBasePrice" nullable="true"/>
+    <field name="anchored" type="boolean" column="anchored" nullable="true"/>
+    <field name="anchorable" type="boolean" column="anchorable" nullable="true"/>
+    <field name="fittablenonsingleton" type="boolean" column="fittableNonSingleton" nullable="true"/>
+    <field name="published" type="boolean" column="published" nullable="true"/>
+    <many-to-one field="iconid" target-entity="Eveicons" fetch="LAZY">
+      <join-columns>
+        <join-column name="iconID" referenced-column-name="iconID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="categoryid" target-entity="Invcategories" fetch="LAZY">
+      <join-columns>
+        <join-column name="categoryID" referenced-column-name="categoryID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

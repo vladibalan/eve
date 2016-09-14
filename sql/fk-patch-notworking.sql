@@ -1,66 +1,24 @@
-/* Redo primary keys for Doctrine*/
-ALTER TABLE `agtResearchAgents` ADD INDEX `agentID` (`agentID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `agtResearchAgents` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `certMasteries` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `certSkills` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
+/* Add primary keys for tables missing one*/
+ALTER TABLE `certSkills` ADD PRIMARY KEY `certID_skillID_certLevelInt` (`certID`, `skillID`, `certLevelInt`);
+ALTER TABLE `certMasteries` ADD PRIMARY KEY `typeID_certID_masteryLevel` (`typeID`, `certID`, `masteryLevel`);
 ALTER TABLE `chrFactions` CHANGE `raceIDs` `raceID` int NULL AFTER `description`;
-ALTER TABLE `crpNPCCorporationDivisions` ADD INDEX `corporationID` (`corporationID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `crpNPCCorporationDivisions` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `crpNPCCorporationResearchFields` ADD INDEX `skillID` (`skillID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `crpNPCCorporationResearchFields` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `crpNPCCorporationTrades` ADD INDEX `corporationID` (`corporationID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `crpNPCCorporationTrades` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `dgmTypeAttributes` ADD INDEX `typeID` (`typeID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `dgmTypeAttributes` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `dgmTypeEffects` ADD INDEX `typeID` (`typeID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `dgmTypeEffects` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `industryActivity` ADD INDEX `typeID` (`typeID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `industryActivity` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `industryActivityMaterials` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `industryActivityProbabilities` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `industryActivityProducts` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `industryActivityRaces` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-
+ALTER TABLE `industryActivityMaterials` ADD PRIMARY KEY `typeID_materialTypeID_activityID` (`typeID`, `materialTypeID`, `activityID`),
+DROP INDEX `ix_industryActivityMaterials_typeID`, DROP INDEX `industryActivityMaterials_idx1`;
+ALTER TABLE `industryActivityProbabilities` DROP INDEX `ix_industryActivityProbabilities_productTypeID`, DROP INDEX `ix_industryActivityProbabilities_typeID`;
+ALTER TABLE `industryActivityProbabilities` ADD PRIMARY KEY `typeID_productTypeID` (`typeID`, `productTypeID`);
+ALTER TABLE `industryActivityProducts` DROP INDEX `ix_industryActivityProducts_productTypeID`, DROP INDEX `ix_industryActivityProducts_typeID`;
+ALTER TABLE `industryActivityProducts` ADD PRIMARY KEY `typeID_productTypeID` (`typeID`, `productTypeID`);
+ALTER TABLE `industryActivityRaces` DROP INDEX `ix_industryActivityRaces_typeID`, DROP INDEX `ix_industryActivityRaces_productTypeID`;
+ALTER TABLE `industryActivityRaces` ADD PRIMARY KEY `typeID_productTypeID` (`typeID`, `productTypeID`);
+ALTER TABLE `industryActivitySkills` DROP INDEX `ix_industryActivitySkills_skillID`, DROP INDEX `ix_industryActivitySkills_typeID`,
+DROP INDEX `industryActivitySkills_idx1`;
 /* industryActivitySkills has duplicate rows - i've removed them using a temporary table*/
 CREATE TABLE `industryActivitySkillsTmp` AS SELECT DISTINCT * FROM `industryActivitySkills`;
 DELETE FROM `industryActivitySkills`;
 INSERT INTO `industryActivitySkills` SELECT * FROM `industryActivitySkillsTmp`;
 DROP TABLE `industryActivitySkillsTmp`;
-ALTER TABLE `industryActivitySkills` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-
-ALTER TABLE `invContrabandTypes` ADD INDEX `factionID` (`factionID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `invContrabandTypes` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `invControlTowerResources` ADD INDEX `controlTowerTypeID` (`controlTowerTypeID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `invControlTowerResources` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `invTypeMaterials` ADD INDEX `typeID` (`typeID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `invTypeMaterials` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `invTypeReactions` ADD INDEX `reactionTypeID` (`reactionTypeID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `invTypeReactions` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `mapConstellationJumps` ADD INDEX `fromConstellationID` (`fromConstellationID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `mapConstellationJumps` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `mapRegionJumps` ADD INDEX `fromRegionID` (`fromRegionID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `mapRegionJumps` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `mapSolarSystemJumps` ADD INDEX `fromSolarSystemID` (`fromSolarSystemID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `mapSolarSystemJumps` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `planetSchematicsPinMap` ADD INDEX `schematicID` (`schematicID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `planetSchematicsPinMap` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `planetSchematicsTypeMap` ADD INDEX `schematicID` (`schematicID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `planetSchematicsTypeMap` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `ramAssemblyLineStations` ADD INDEX `stationID` (`stationID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `ramAssemblyLineStations` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `ramAssemblyLineTypeDetailPerCategory` ADD INDEX `assemblyLineTypeID` (`assemblyLineTypeID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `ramAssemblyLineTypeDetailPerCategory` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `ramAssemblyLineTypeDetailPerGroup` ADD INDEX `assemblyLineTypeID` (`assemblyLineTypeID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `ramAssemblyLineTypeDetailPerGroup` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `ramInstallationTypeContents` ADD INDEX `installationTypeID` (`installationTypeID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `ramInstallationTypeContents` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `skinShip` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `staOperationServices` ADD INDEX `operationID` (`operationID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `staOperationServices` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `translationTables` ADD INDEX `sourceTable` (`sourceTable`), DROP INDEX `PRIMARY`;
-ALTER TABLE `translationTables` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
-ALTER TABLE `trnTranslations` ADD INDEX `tcID` (`tcID`), DROP INDEX `PRIMARY`;
-ALTER TABLE `trnTranslations` ADD `id` int NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
+ALTER TABLE `industryActivitySkills` ADD PRIMARY KEY `typeID_activityID_skillID` (`typeID`, `activityID`, `skillID`);
+ALTER TABLE `skinShip` ADD PRIMARY KEY `skinID_typeID` (`skinID`, `typeID`), DROP INDEX `ix_skinShip_typeID`, DROP INDEX `ix_skinShip_skinID`;
 
 /* need to change some values to NULL to be able to add foreign keys*/
 UPDATE `invTypes` SET `graphicID` = NULL WHERE `graphicID` = 0;

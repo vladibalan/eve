@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Invcontroltowerresources" table="invControlTowerResources">
+    <indexes>
+      <index name="controlTowerTypeID" columns="controlTowerTypeID"/>
+      <index name="factionID" columns="factionID"/>
+      <index name="resourceTypeID" columns="resourceTypeID"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="purpose" type="integer" column="purpose" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="quantity" type="integer" column="quantity" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="minsecuritylevel" type="float" column="minSecurityLevel" precision="10" scale="0" nullable="true"/>
+    <many-to-one field="factionid" target-entity="Chrfactions" fetch="LAZY">
+      <join-columns>
+        <join-column name="factionID" referenced-column-name="factionID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="resourcetypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="resourceTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="controltowertypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="controlTowerTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

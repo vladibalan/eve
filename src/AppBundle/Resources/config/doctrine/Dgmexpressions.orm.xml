@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Dgmexpressions" table="dgmExpressions">
+    <indexes>
+      <index name="expressionTypeID" columns="expressionTypeID"/>
+      <index name="expressionGroupID" columns="expressionGroupID"/>
+      <index name="expressionAttributeID" columns="expressionAttributeID"/>
+    </indexes>
+    <id name="expressionid" type="integer" column="expressionID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="operandid" type="integer" column="operandID" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="arg1" type="integer" column="arg1" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="arg2" type="integer" column="arg2" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="expressionvalue" type="string" column="expressionValue" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="description" type="string" column="description" length="1000" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="expressionname" type="string" column="expressionName" length="500" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="expressionattributeid" target-entity="Dgmattributetypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="expressionAttributeID" referenced-column-name="attributeID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="expressiongroupid" target-entity="Invgroups" fetch="LAZY">
+      <join-columns>
+        <join-column name="expressionGroupID" referenced-column-name="groupID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="expressiontypeid" target-entity="Invtypes" fetch="LAZY">
+      <join-columns>
+        <join-column name="expressionTypeID" referenced-column-name="typeID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

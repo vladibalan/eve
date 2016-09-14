@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Mapconstellations" table="mapConstellations">
+    <indexes>
+      <index name="regionID" columns="regionID"/>
+      <index name="factionID" columns="factionID"/>
+    </indexes>
+    <id name="constellationid" type="integer" column="constellationID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="constellationname" type="string" column="constellationName" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="x" type="float" column="x" precision="10" scale="0" nullable="true"/>
+    <field name="y" type="float" column="y" precision="10" scale="0" nullable="true"/>
+    <field name="z" type="float" column="z" precision="10" scale="0" nullable="true"/>
+    <field name="xmin" type="float" column="xMin" precision="10" scale="0" nullable="true"/>
+    <field name="xmax" type="float" column="xMax" precision="10" scale="0" nullable="true"/>
+    <field name="ymin" type="float" column="yMin" precision="10" scale="0" nullable="true"/>
+    <field name="ymax" type="float" column="yMax" precision="10" scale="0" nullable="true"/>
+    <field name="zmin" type="float" column="zMin" precision="10" scale="0" nullable="true"/>
+    <field name="zmax" type="float" column="zMax" precision="10" scale="0" nullable="true"/>
+    <field name="radius" type="float" column="radius" precision="10" scale="0" nullable="true"/>
+    <many-to-one field="factionid" target-entity="Chrfactions" fetch="LAZY">
+      <join-columns>
+        <join-column name="factionID" referenced-column-name="factionID"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="regionid" target-entity="Mapregions" fetch="LAZY">
+      <join-columns>
+        <join-column name="regionID" referenced-column-name="regionID"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
